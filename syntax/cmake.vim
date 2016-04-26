@@ -47,13 +47,14 @@ syn keyword cmakeTodo
             \ TODO FIXME XXX
             \ contained
 
-hi def link cmakeCommand Function
+hi def link cmakeCommand Statement
 hi def link cmakeComment Comment
 hi def link cmakeEnvironment Special
 hi def link cmakeError Error
 hi def link cmakeEscaped Special
 hi def link cmakeMacro PreProc
-hi def link cmakeOperators Operator
+hi def link cmakeOperators Function
+hi def link cmakeKeywords Type
 hi def link cmakeRegistry Underlined
 hi def link cmakeString String
 hi def link cmakeTodo TODO
