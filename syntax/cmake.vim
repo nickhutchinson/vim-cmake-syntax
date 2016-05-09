@@ -62,7 +62,7 @@ hi def link cmakeRegistry Underlined
 hi def link cmakeString String
 hi def link cmakeTodo TODO
 hi def link cmakeVariable Identifier
-hi def link cmakeProperty Constant
+hi def link cmakeProperty Function
 hi def link cmakeVariableValue Type
 
 let b:current_syntax = "cmake"
