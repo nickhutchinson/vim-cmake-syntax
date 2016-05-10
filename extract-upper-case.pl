@@ -2,11 +2,9 @@
 
 use strict;
 
-my %h;
+my @m;
 while (<STDIN>) {
-	while ($_ =~ m/[^A-Za-z0-9_]([A-Z_]{2,})[^A-Za-z0-9_]/g) {
-#		print $1,"\n";
-		$h{$1} = 1;
-	}
+	push @m, m/\b([A-Z_]{2,})\b/g;
 }
-print join(" ", sort keys %h), "\n";
+print join(" ", sort keys %{ { map { $_ => 1 } @m } }), "\n";
+
