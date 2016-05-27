@@ -7,6 +7,9 @@ my @commands;
 my @properties;
 my %keywords; # command => keyword-list
 
+my %unwanted = map { $_ => 1 } qw(VS CXX IDE);
+	# cannot remove ALL - exists for add_custom_command
+
 
 # get all variables
 open(CMAKE, "cmake --help-variable-list|") or die "could not run cmake";
@@ -31,7 +34,9 @@ while (my $cmd = <CMAKE>) {
 
 		foreach my $w (m/\b([A-Z_]{2,})\b/g) {
 			next
-				if (exists $variables{$w}); # skip if it is a variable
+				if exists $variables{$w} or  # skip if it is a variable
+				   exists $unwanted{$w};     # skip if not wanted
+
 			push @word, $w;
 		}
 	}

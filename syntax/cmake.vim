@@ -41,11 +41,11 @@ syn keyword cmakeKWadd_compile_options
             \ contained
 
 syn keyword cmakeKWadd_custom_command
-            \ APPEND ARGS BYPRODUCTS COMMAND COMMENT CXX DEPENDS GENERATE GENERATED IMPLICIT_DEPENDS MAIN_DEPENDENCY NOT OUTPUT POST_BUILD PRE_BUILD PRE_LINK SYMBOLIC TARGET TARGET_FILE USES_TERMINAL VERBATIM WORKING_DIRECTORY
+            \ APPEND ARGS BYPRODUCTS COMMAND COMMENT DEPENDS GENERATE GENERATED IMPLICIT_DEPENDS MAIN_DEPENDENCY NOT OUTPUT POST_BUILD PRE_BUILD PRE_LINK SYMBOLIC TARGET TARGET_FILE USES_TERMINAL VERBATIM WORKING_DIRECTORY
             \ contained
 
 syn keyword cmakeKWadd_custom_target
-            \ ALL BYPRODUCTS COMMAND COMMENT DEPENDS GENERATE GENERATED IDE SOURCES USES_TERMINAL VERBATIM WORKING_DIRECTORY
+            \ ALL BYPRODUCTS COMMAND COMMENT DEPENDS GENERATE GENERATED SOURCES USES_TERMINAL VERBATIM WORKING_DIRECTORY
             \ contained
 
 syn keyword cmakeKWadd_definitions
@@ -65,7 +65,7 @@ syn keyword cmakeKWadd_library
             \ contained
 
 syn keyword cmakeKWadd_subdirectory
-            \ ALL EXCLUDE_FROM_ALL IDE VS
+            \ ALL EXCLUDE_FROM_ALL
             \ contained
 
 syn keyword cmakeKWadd_test
@@ -149,7 +149,7 @@ syn keyword cmakeKWdefine_property
             \ contained
 
 syn keyword cmakeKWenable_language
-            \ CXX OPTIONAL
+            \ OPTIONAL
             \ contained
 
 syn keyword cmakeKWexec_program
@@ -301,7 +301,7 @@ syn keyword cmakeKWoption
             \ contained
 
 syn keyword cmakeKWproject
-            \ CMAKE_PROJECT_ CXX LANGUAGES NAME NEW NONE PROJECT VERSION _BINARY_DIR _INCLUDE _SOURCE_DIR _VERSION _VERSION_MAJOR _VERSION_MINOR _VERSION_PATCH _VERSION_TWEAK
+            \ CMAKE_PROJECT_ LANGUAGES NAME NEW NONE PROJECT VERSION _BINARY_DIR _INCLUDE _SOURCE_DIR _VERSION _VERSION_MAJOR _VERSION_MINOR _VERSION_PATCH _VERSION_TWEAK
             \ contained
 
 syn keyword cmakeKWremove
@@ -341,7 +341,7 @@ syn keyword cmakeKWset_tests_properties
             \ contained
 
 syn keyword cmakeKWsource_group
-            \ FILES IDE REGULAR_EXPRESSION
+            \ FILES REGULAR_EXPRESSION
             \ contained
 
 syn keyword cmakeKWstring
@@ -349,7 +349,7 @@ syn keyword cmakeKWstring
             \ contained
 
 syn keyword cmakeKWsubdirs
-            \ EXCLUDE_FROM_ALL IDE PREORDER
+            \ EXCLUDE_FROM_ALL PREORDER
             \ contained
 
 syn keyword cmakeKWtarget_compile_definitions
