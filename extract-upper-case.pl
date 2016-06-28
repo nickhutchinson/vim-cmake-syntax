@@ -7,11 +7,11 @@ my @commands;
 my @properties;
 my %keywords; # command => keyword-list
 
-my %unwanted = map { $_ => 1 } qw(VS CXX IDE);
+my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_);
 	# cannot remove ALL - exists for add_custom_command
 
 
-# get all variables
+# variables
 open(CMAKE, "cmake --help-variable-list|") or die "could not run cmake";
 while (<CMAKE>) {
 	chomp;
@@ -22,6 +22,7 @@ close(CMAKE);
 # transform all variables in a hash - to be able to use exists later on
 my %variables = map { $_ => 1 } @variables;
 
+# commands
 open(CMAKE, "cmake --help-command-list|");
 while (my $cmd = <CMAKE>) {
 	chomp $cmd;
@@ -48,6 +49,7 @@ while (my $cmd = <CMAKE>) {
 }
 close(CMAKE);
 
+# properties
 open(CMAKE, "cmake --help-property-list|");
 while (<CMAKE>) {
 	chomp;
@@ -55,6 +57,8 @@ while (<CMAKE>) {
 }
 close(CMAKE);
 
+
+# generate cmake.vim
 open(IN,  "<cmake.vim.in") or die "could not read cmake.vim.in";
 open(OUT, ">syntax/cmake.vim") or die "could not write to syntax/cmake.vim";
 
