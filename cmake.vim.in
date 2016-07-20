@@ -16,6 +16,8 @@ endif
 
 syn match cmakeEscaped /\(\\\\\|\\"\|\\n\|\\t\)/ contained
 syn region cmakeComment start="#" end="$" contains=cmakeTodo
+syn region cmakeGeneratorExpression start=/$</ end=/>/
+            \ contained oneline contains=CONTAINED,cmakeTodo,cmakeVariable,cmakeProperty,cmakeGeneratorExpressions
 syn region cmakeRegistry start=/\[/ end=/]/
             \ contained oneline contains=CONTAINED,cmakeTodo,cmakeEscaped
 syn region cmakeVariableValue start=/\${/ end=/}/
@@ -42,6 +44,10 @@ syn keyword cmakeModule
 
 @KEYWORDS@
 
+syn keyword cmakeGeneratorExpressions
+@GENERATOR_EXPRESSIONS@
+            \ contained
+
 syn case ignore
 syn keyword cmakeCommand
 @COMMAND_LIST@
@@ -62,7 +68,9 @@ hi def link cmakeModule PreProc
 hi def link cmakeRegistry Underlined
 hi def link cmakeString String
 hi def link cmakeTodo TODO
+hi def link cmakeGeneratorExpression WarningMsg
 hi def link cmakeVariable Identifier
+hi def link cmakeGeneratorExpressions Function
 hi def link cmakeProperty Function
 hi def link cmakeVariableValue Type
 

@@ -16,6 +16,8 @@ endif
 
 syn match cmakeEscaped /\(\\\\\|\\"\|\\n\|\\t\)/ contained
 syn region cmakeComment start="#" end="$" contains=cmakeTodo
+syn region cmakeGeneratorExpression start=/$</ end=/>/
+            \ contained oneline contains=CONTAINED,cmakeTodo,cmakeVariable,cmakeProperty,cmakeGeneratorExpressions
 syn region cmakeRegistry start=/\[/ end=/]/
             \ contained oneline contains=CONTAINED,cmakeTodo,cmakeEscaped
 syn region cmakeVariableValue start=/\${/ end=/}/
@@ -417,6 +419,10 @@ syn keyword cmakeKWwrite_file
             \ contained
 
 
+syn keyword cmakeGeneratorExpressions
+            \ LINK_LIBRARIES INCLUDE_DIRECTORIES COMPILE_DEFINITIONS CONFIG DEBUG_MODE DEBUG_MODE BOOL AND OR NOT STREQUAL STREQUAL EQUAL EQUAL CONFIG MAP_IMPORTED_CONFIG_ CONFIG IMPORTED PLATFORM_ID C_COMPILER_ID CXX_COMPILER_ID VERSION_GREATER VERSION_LESS VERSION_EQUAL C_COMPILER_VERSION CXX_COMPILER_VERSION TARGET_POLICY NEW COMPILE_FEATURES C_STANDARD CXX_STANDARD COMPILE_LANGUAGE PRIVATE COMPILE_LANGUAGE PUBLIC PRIVATE COMPILE_LANGUAGE COMPILING_CXX PRIVATE COMPILE_LANGUAGE CXX_COMPILER_ID GNU VERSION_LESS CXX_COMPILER_VERSION OLD_COMPILER OLD_COMPILER CMAKE_CXX_COMPILER_VERSION CONFIGURATION CONFIG CONFIG PLATFORM_ID C_COMPILER_ID CMAKE_ LANG _COMPILER_ID CXX_COMPILER_ID CMAKE_ LANG _COMPILER_ID C_COMPILER_VERSION CMAKE_ LANG _COMPILER_VERSION CXX_COMPILER_VERSION CMAKE_ LANG _COMPILER_VERSION TARGET_FILE TARGET_FILE_NAME TARGET_FILE_DIR TARGET_LINKER_FILE TARGET_LINKER_FILE_NAME TARGET_LINKER_FILE_DIR TARGET_SONAME_FILE TARGET_SONAME_FILE_NAME TARGET_SONAME_FILE_DIR TARGET_PDB_FILE PDB_NAME PDB_OUTPUT_DIRECTORY PDB_NAME_ CONFIG PDB_OUTPUT_DIRECTORY_ CONFIG TARGET_PDB_FILE_NAME TARGET_PDB_FILE_DIR TARGET_PROPERTY TARGET_PROPERTY INSTALL_PREFIX EXPORT COMPILE_LANGUAGE JOIN TARGET_PROPERTY INCLUDE_DIRECTORIES INCLUDE_DIRECTORIES INCLUDE_DIRECTORIES BOOL JOIN TARGET_PROPERTY INCLUDE_DIRECTORIES JOIN ANGLE COMMA SEMICOLON TARGET_NAME LINK_ONLY INTERFACE_LINK_LIBRARIES INSTALL_INTERFACE EXPORT BUILD_INTERFACE LOWER_CASE UPPER_CASE MAKE_C_IDENTIFIER TARGET_OBJECTS OBJECT_LIBRARY SHELL_PATH MSYS
+            \ contained
+
 syn case ignore
 syn keyword cmakeCommand
             \ add_compile_options add_custom_command add_custom_target add_definitions add_dependencies add_executable add_library add_subdirectory add_test aux_source_directory break build_command build_name cmake_host_system_information cmake_minimum_required cmake_parse_arguments cmake_policy configure_file continue create_test_sourcelist ctest_build ctest_configure ctest_coverage ctest_empty_binary_directory ctest_memcheck ctest_read_custom_files ctest_run_script ctest_sleep ctest_start ctest_submit ctest_test ctest_update ctest_upload define_property else elseif enable_language enable_testing endforeach endfunction endif endmacro endwhile exec_program execute_process export export_library_dependencies file find_file find_library find_package find_path find_program fltk_wrap_ui foreach function get_cmake_property get_directory_property get_filename_component get_property get_source_file_property get_target_property get_test_property if include include_directories include_external_msproject include_regular_expression install install_files install_programs install_targets link_directories link_libraries list load_cache load_command macro make_directory mark_as_advanced math message option output_required_files project qt_wrap_cpp qt_wrap_ui remove remove_definitions return separate_arguments set set_directory_properties set_property set_source_files_properties set_target_properties set_tests_properties site_name source_group string subdir_depends subdirs target_compile_definitions target_compile_features target_compile_options target_include_directories target_link_libraries target_sources try_compile try_run unset use_mangled_mesa utility_source variable_requires variable_watch while write_file
@@ -437,7 +443,9 @@ hi def link cmakeModule PreProc
 hi def link cmakeRegistry Underlined
 hi def link cmakeString String
 hi def link cmakeTodo TODO
+hi def link cmakeGeneratorExpression WarningMsg
 hi def link cmakeVariable Identifier
+hi def link cmakeGeneratorExpressions Function
 hi def link cmakeProperty Function
 hi def link cmakeVariableValue Type
 

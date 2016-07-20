@@ -53,6 +53,9 @@ foreach my $mod (@modules) {
 	$keywords{$mod} = [ sort keys %{ { map { $_ => 1 } @word } } ];
 }
 
+# and now for generator-expressions
+my @generator_expr = extract_upper("cmake --help-manual cmake-generator-expressions |");
+
 # properties
 open(CMAKE, "cmake --help-property-list|");
 while (<CMAKE>) {
@@ -76,6 +79,8 @@ while(<IN>)
 			print OUT " " x 12 , "\\ ", join(" ", @variables), "\n";
 		} elsif ($1 eq "MODULES") {
 			print OUT " " x 12 , "\\ ", join("\n", @modules), "\n";
+		} elsif ($1 eq "GENERATOR_EXPRESSIONS") {
+			print OUT " " x 12 , "\\ ", join(" ", @generator_expr), "\n";
 		} elsif ($1 eq "KEYWORDS") {
 			foreach my $k (sort keys %keywords) {
 				print OUT "syn keyword cmakeKW$k\n";
