@@ -1,7 +1,7 @@
 " vim: set nowrap:
 " Vim syntax file
 " Language:     CMake
-" Author:       Andy Cedilnik <andy.cedilnik@kitware.com>
+" Author:       Andy Cedilnik <andy.cedilnik@kitware.com>, Nicholas Hutchinson <nshutchinson@gmail.com>, Patrick Boettcher <patrick.boettcher@posteo.de>
 " Maintainer:   Karthik Krishnan <karthik.krishnan@kitware.com>
 " Last Change:  $Date$
 " Version:      $Revision$
