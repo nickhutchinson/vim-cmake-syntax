@@ -76,7 +76,7 @@ hi def link cmakeComment Comment
 hi def link cmakeEnvironment Special
 hi def link cmakeEscaped Special
 hi def link cmakeGeneratorExpression WarningMsg
-hi def link cmakeGeneratorExpressions Keyword
+hi def link cmakeGeneratorExpressions ModeMsg
 hi def link cmakeLuaComment Comment
 hi def link cmakeModule Include
 hi def link cmakeProperty Constant
