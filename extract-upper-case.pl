@@ -9,8 +9,16 @@ my @properties;
 my @modules;
 my %keywords; # command => keyword-list
 
-my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_);
+# unwanted upper-cases
+my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_ DFOO DBAR);
 	# cannot remove ALL - exists for add_custom_command
+
+# control-statements
+my %conditional = map { $_ => 1 } qw(if else elseif endif);
+my %loop = map { $_ => 1 } qw(foreach while endforeach endwhile);
+
+# decrecated
+my %deprecated = map { $_ => 1 } qw(build_name exec_program export_library_dependencies install_files install_programs install_targets link_libraries make_directory output_required_files remove subdir_depends subdirs use_mangled_mesa utility_source variable_requires write_file);
 
 # add some (popular) modules
 push @modules, "ExternalProject";
@@ -72,15 +80,25 @@ my @keyword_hi;
 
 while(<IN>)
 {
-	if (m/\@(.*?)\@/) { # match for @SOMETHING@
+	if (m/\@([A-Z0-9_]+)\@/) { # match for @SOMETHING@
 		if ($1 eq "COMMAND_LIST") {
-			print OUT " " x 12 , "\\ ", join(" ", @commands), "\n";
+			# do not include "special" commands in this list
+			my @tmp = grep { ! exists $conditional{$_} and
+			                 ! exists $loop{$_} and
+			                 ! exists $deprecated{$_} } @commands;
+			print OUT " " x 12 , "\\ ", join(" ", @tmp), "\n";
 		} elsif ($1 eq "VARIABLE_LIST") {
 			print OUT " " x 12 , "\\ ", join(" ", @variables), "\n";
 		} elsif ($1 eq "MODULES") {
 			print OUT " " x 12 , "\\ ", join("\n", @modules), "\n";
 		} elsif ($1 eq "GENERATOR_EXPRESSIONS") {
 			print OUT " " x 12 , "\\ ", join(" ", @generator_expr), "\n";
+		} elsif ($1 eq "CONDITIONALS") {
+			print OUT " " x 12 , "\\ ", join(" ", sort keys %conditional), "\n";
+		} elsif ($1 eq "LOOPS") {
+			print OUT " " x 12 , "\\ ", join(" ", sort keys %loop), "\n";
+		} elsif ($1 eq "DEPRECATED") {
+			print OUT " " x 12 , "\\ ", join(" ", sort keys %deprecated), "\n";
 		} elsif ($1 eq "KEYWORDS") {
 			foreach my $k (sort keys %keywords) {
 				print OUT "syn keyword cmakeKW$k\n";
