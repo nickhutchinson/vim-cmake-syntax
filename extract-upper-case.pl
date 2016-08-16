@@ -139,4 +139,3 @@ sub extract_upper
 
 	return @word;
 }
-
