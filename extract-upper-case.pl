@@ -10,7 +10,7 @@ my @modules;
 my %keywords; # command => keyword-list
 
 # unwanted upper-cases
-my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_ DFOO DBAR);
+my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_ DFOO DBAR NEW);
 	# cannot remove ALL - exists for add_custom_command
 
 # control-statements
