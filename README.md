@@ -10,9 +10,9 @@ With Pathogen
     cd ~/.vim/bundle
     git clone git://github.com/nickhutchinson/vim-cmake-syntax.git
 
- 
+
 With Vundle
 
     " .vimrc
-    Plugin 'nickhutchinson/vim-make-syntax'
+    Plugin 'nickhutchinson/vim-cmake-syntax'
 
