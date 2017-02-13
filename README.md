@@ -14,5 +14,5 @@ With Pathogen
 With Vundle
 
     " .vimrc
-    Plugin 'nickhutchinson/vim-make-syntax'
+    Plugin 'nickhutchinson/vim-cmake-syntax'
 
