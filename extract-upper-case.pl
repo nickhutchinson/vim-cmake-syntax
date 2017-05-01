@@ -27,6 +27,7 @@ push @modules, "ExternalProject";
 open(CMAKE, "cmake --help-variable-list|") or die "could not run cmake";
 while (<CMAKE>) {
 	chomp;
+	next if /\</; # skip VARIABLES which contained <>-"templates"
 	push @variables, $_;
 }
 close(CMAKE);
@@ -38,7 +39,6 @@ my %variables = map { $_ => 1 } @variables;
 open(CMAKE, "cmake --help-command-list|");
 while (my $cmd = <CMAKE>) {
 	chomp $cmd;
-
 	push @commands, $cmd;
 }
 close(CMAKE);
@@ -88,7 +88,7 @@ while(<IN>)
 			                 ! exists $deprecated{$_} } @commands;
 			print OUT " " x 12 , "\\ ", join(" ", @tmp), "\n";
 		} elsif ($1 eq "VARIABLE_LIST") {
-			print OUT " " x 12 , "\\ ", join(" ", @variables), "\n";
+			print OUT " " x 12 , "\\ ", join(" ", keys %variables), "\n";
 		} elsif ($1 eq "MODULES") {
 			print OUT " " x 12 , "\\ ", join("\n", @modules), "\n";
 		} elsif ($1 eq "GENERATOR_EXPRESSIONS") {
@@ -103,7 +103,6 @@ while(<IN>)
 			foreach my $k (sort keys %keywords) {
 				print OUT "syn keyword cmakeKW$k\n";
 				print OUT " " x 12, "\\ ", join(" ", @{$keywords{$k}}), "\n";
-				print OUT " " x 12, "\\ contained\n";
 				print OUT "\n";
 				push @keyword_hi, "hi def link cmakeKW$k ModeMsg";
 			}
@@ -130,7 +129,8 @@ sub extract_upper
 		foreach my $w (m/\b([A-Z_]{2,})\b/g) {
 			next
 				if exists $variables{$w} or  # skip if it is a variable
-				   exists $unwanted{$w};     # skip if not wanted
+				   exists $unwanted{$w} or   # skip if not wanted
+				   grep(/$w/, @word);     # skip if already in array
 
 			push @word, $w;
 		}
