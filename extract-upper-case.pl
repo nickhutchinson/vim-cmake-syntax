@@ -3,6 +3,9 @@
 use strict;
 use warnings;
 
+#my $cmake = "/home/pboettch/devel/upstream/cmake/build/bin/cmake";
+my $cmake = "cmake";
+
 my @variables;
 my @commands;
 my @properties;
@@ -24,7 +27,7 @@ my %deprecated = map { $_ => 1 } qw(build_name exec_program export_library_depen
 push @modules, "ExternalProject";
 
 # variables
-open(CMAKE, "cmake --help-variable-list|") or die "could not run cmake";
+open(CMAKE, "$cmake --help-variable-list|") or die "could not run cmake";
 while (<CMAKE>) {
 	chomp;
 	next if /\</; # skip VARIABLES which contained <>-"templates"
@@ -36,7 +39,7 @@ close(CMAKE);
 my %variables = map { $_ => 1 } @variables;
 
 # commands
-open(CMAKE, "cmake --help-command-list|");
+open(CMAKE, "$cmake --help-command-list|");
 while (my $cmd = <CMAKE>) {
 	chomp $cmd;
 	push @commands, $cmd;
@@ -45,7 +48,7 @@ close(CMAKE);
 
 # now generate a keyword-list per command
 foreach my $cmd (@commands) {
-	my @word = extract_upper("cmake --help-command $cmd|");
+	my @word = extract_upper("$cmake --help-command $cmd|");
 
 	next if scalar @word == 0;
 
@@ -54,7 +57,7 @@ foreach my $cmd (@commands) {
 
 # and now for modules
 foreach my $mod (@modules) {
-	my @word = extract_upper("cmake --help-module $mod|");
+	my @word = extract_upper("$cmake --help-module $mod|");
 
 	next if scalar @word == 0;
 
@@ -62,10 +65,10 @@ foreach my $mod (@modules) {
 }
 
 # and now for generator-expressions
-my @generator_expr = extract_upper("cmake --help-manual cmake-generator-expressions |");
+my @generator_expr = extract_upper("$cmake --help-manual cmake-generator-expressions |");
 
 # properties
-open(CMAKE, "cmake --help-property-list|");
+open(CMAKE, "$cmake --help-property-list|");
 while (<CMAKE>) {
 	chomp;
 	push @properties, $_;
