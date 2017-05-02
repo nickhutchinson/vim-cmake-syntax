@@ -88,7 +88,7 @@ while(<IN>)
 			                 ! exists $deprecated{$_} } @commands;
 			print OUT " " x 12 , "\\ ", join(" ", @tmp), "\n";
 		} elsif ($1 eq "VARIABLE_LIST") {
-			print OUT " " x 12 , "\\ ", join(" ", keys %variables), "\n";
+			print OUT " " x 12 , "\\ ", join(" ", sort keys %variables), "\n";
 		} elsif ($1 eq "MODULES") {
 			print OUT " " x 12 , "\\ ", join("\n", @modules), "\n";
 		} elsif ($1 eq "GENERATOR_EXPRESSIONS") {
@@ -101,7 +101,7 @@ while(<IN>)
 			print OUT " " x 12 , "\\ ", join(" ", sort keys %deprecated), "\n";
 		} elsif ($1 eq "KEYWORDS") {
 			foreach my $k (sort keys %keywords) {
-				print OUT "syn keyword cmakeKW$k\n";
+				print OUT "syn keyword cmakeKW$k contained\n";
 				print OUT " " x 12, "\\ ", join(" ", @{$keywords{$k}}), "\n";
 				print OUT "\n";
 				push @keyword_hi, "hi def link cmakeKW$k ModeMsg";
