@@ -29,8 +29,8 @@ push @modules, "ExternalProject";
 # variables
 open(CMAKE, "$cmake --help-variable-list|") or die "could not run cmake";
 while (<CMAKE>) {
+	next if /\</; # skip if containing < or >
 	chomp;
-	next if /\</; # skip VARIABLES which contained <>-"templates"
 	push @variables, $_;
 }
 close(CMAKE);
@@ -70,10 +70,14 @@ my @generator_expr = extract_upper("$cmake --help-manual cmake-generator-express
 # properties
 open(CMAKE, "$cmake --help-property-list|");
 while (<CMAKE>) {
+	next if /\</; # skip if containing < or >
 	chomp;
 	push @properties, $_;
 }
 close(CMAKE);
+
+# transform all properties in a hash
+my %properties = map { $_ => 1 } @properties;
 
 # generate cmake.vim
 open(IN,  "<cmake.vim.in") or die "could not read cmake.vim.in";
@@ -102,6 +106,8 @@ while(<IN>)
 			print OUT " " x 12 , "\\ ", join(" ", sort keys %loop), "\n";
 		} elsif ($1 eq "DEPRECATED") {
 			print OUT " " x 12 , "\\ ", join(" ", sort keys %deprecated), "\n";
+		} elsif ($1 eq "PROPERTIES") {
+			print OUT " " x 12 , "\\ ", join(" ", sort keys %properties), "\n";
 		} elsif ($1 eq "KEYWORDS") {
 			foreach my $k (sort keys %keywords) {
 				print OUT "syn keyword cmakeKW$k contained\n";
@@ -128,7 +134,6 @@ sub extract_upper
 
 	open(KW, $input);
 	while (<KW>) {
-
 		foreach my $w (m/\b([A-Z_]{2,})\b/g) {
 			next
 				if exists $variables{$w} or  # skip if it is a variable
