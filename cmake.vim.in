@@ -14,7 +14,7 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn region cmakeComment start="#" end="$" contains=cmakeTodo,@Spell
+syn region cmakeComment start="#" end="$" contains=cmakeTodo,cmakeLuaComment,@Spell
 syn region cmakeLuaComment start="\[\z(=*\)\[" end="\]\z1\]" contains=cmakeTodo,@Spell
 
 syn match cmakeEscaped /\(\\\\\|\\"\|\\n\|\\t\)/ contained
