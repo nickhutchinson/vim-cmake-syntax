@@ -23,3 +23,10 @@ With Vundle
     " inside .vimrc
     Plugin 'pboettch/vim-cmake-syntax'
 
+## Test
+
+There is a ever growing test-suite based on ctest located in test/
+
+    cd <build-dir-where-ever-located>
+    cmake path/to/this/repo/test
+    ctest
