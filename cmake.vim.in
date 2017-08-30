@@ -13,6 +13,8 @@
 if exists("b:current_syntax")
   finish
 endif
+let s:keepcpo= &cpo
+set cpo&vim
 
 syn region cmakeComment start="#" end="$" contains=cmakeTodo,cmakeLuaComment,@Spell
 syn region cmakeLuaComment start="\[\z(=*\)\[" end="\]\z1\]" contains=cmakeTodo,@Spell
@@ -91,3 +93,8 @@ hi def link cmakeVariable Identifier
 @KEYWORDS_HIGHLIGHT@
 
 let b:current_syntax = "cmake"
+
+let &cpo = s:keepcpo
+unlet s:keepcpo
+
+"EOF"
