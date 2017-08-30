@@ -79,6 +79,15 @@ close(CMAKE);
 # transform all properties in a hash
 my %properties = map { $_ => 1 } @properties;
 
+# version
+open(CMAKE, "$cmake --version|");
+my $version = 'unknown';
+while (<CMAKE>) {
+	chomp;
+	$version = $_ if /cmake version/;
+}
+close(CMAKE);
+
 # generate cmake.vim
 open(IN,  "<cmake.vim.in") or die "could not read cmake.vim.in";
 open(OUT, ">syntax/cmake.vim") or die "could not write to syntax/cmake.vim";
@@ -117,6 +126,9 @@ while(<IN>)
 			}
 		} elsif ($1 eq "KEYWORDS_HIGHLIGHT") {
 			print OUT join("\n", @keyword_hi), "\n";
+		} elsif ($1 eq "VERSION") {
+			$_ =~ s/\@VERSION\@/$version/;
+			print OUT $_;
 		} else {
 			print "ERROR do not know how to replace $1\n";
 		}

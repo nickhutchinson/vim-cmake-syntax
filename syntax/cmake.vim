@@ -1,10 +1,13 @@
 " vim: set nowrap:
 " Vim syntax file
+" Program:      CMake - Cross-Platform Makefile Generator
+" Version:      cmake version 3.9.20170830-ge0713
 " Language:     CMake
-" Author:       Andy Cedilnik <andy.cedilnik@kitware.com>, Nicholas Hutchinson <nshutchinson@gmail.com>, Patrick Boettcher <patrick.boettcher@posteo.de>
-" Maintainer:   Karthik Krishnan <karthik.krishnan@kitware.com>
-" Last Change:  $Date$
-" Version:      $Revision$
+" Author:       Andy Cedilnik <andy.cedilnik@kitware.com>,
+"               Nicholas Hutchinson <nshutchinson@gmail.com>,
+"               Patrick Boettcher <patrick.boettcher@posteo.de>
+" Maintainer:   Dimitri Merejkowsky <d.merej@gmail.com>
+" Former Maintainer: Karthik Krishnan <karthik.krishnan@kitware.com>
 "
 " Licence:      The CMake license applies to this file. See
 "               https://cmake.org/licensing
