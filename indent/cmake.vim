@@ -17,7 +17,6 @@ let b:did_indent = 1
 let s:keepcpo= &cpo
 set cpo&vim
 
-setlocal et
 setlocal indentexpr=CMakeGetIndent(v:lnum)
 setlocal indentkeys+==ENDIF(,ENDFOREACH(,ENDMACRO(,ELSE(,ELSEIF(,ENDWHILE(
 
