@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.cmake,CMakeLists.txt setlocal filetype=cmake
+au BufNewFile,BufRead *.cmake setlocal filetype=cmake
