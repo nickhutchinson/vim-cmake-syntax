@@ -99,6 +99,9 @@ syn keyword cmakeKWcmake_policy contained
 syn keyword cmakeKWconfigure_file contained
             \ COPYONLY CRLF DOS ESCAPE_QUOTES FOO_ENABLE FOO_STRING LF NEWLINE_STYLE VAR
 
+syn keyword cmakeKWconfigure_package_config_file contained
+            \ INSTALL_DESTINATION PATH_VARS NO_SET_AND_CHECK_MACRO NO_CHECK_REQUIRED_COMPONENTS_MACRO INSTALL_PREFIX
+
 syn keyword cmakeKWcreate_test_sourcelist contained
             \ CMAKE_TESTDRIVER_AFTER_TESTMAIN CMAKE_TESTDRIVER_BEFORE_TESTMAIN EXTRA_INCLUDE FUNCTION
 
@@ -327,6 +330,9 @@ syn keyword cmakeKWvariable_watch contained
 syn keyword cmakeKWwhile contained
             \ ARGS
 
+syn keyword cmakeKWwrite_basic_package_version_file contained
+            \ VERSION COMPATIBILITY
+
 syn keyword cmakeKWwrite_file contained
             \ APPEND CONFIGURE_FILE NOTE WRITE
 
@@ -337,7 +343,7 @@ syn keyword cmakeGeneratorExpressions contained
 syn case ignore
 
 syn keyword cmakeCommand
-            \ add_compile_options add_custom_command add_custom_target add_definitions add_dependencies add_executable add_library add_subdirectory add_test aux_source_directory break build_command cmake_host_system_information cmake_minimum_required cmake_parse_arguments cmake_policy configure_file continue create_test_sourcelist ctest_build ctest_configure ctest_coverage ctest_empty_binary_directory ctest_memcheck ctest_read_custom_files ctest_run_script ctest_sleep ctest_start ctest_submit ctest_test ctest_update ctest_upload define_property enable_language enable_testing endfunction endmacro execute_process export file find_file find_library find_package find_path find_program fltk_wrap_ui function get_cmake_property get_directory_property get_filename_component get_property get_source_file_property get_target_property get_test_property include include_directories include_external_msproject include_guard include_regular_expression install link_directories list load_cache load_command macro mark_as_advanced math message option project qt_wrap_cpp qt_wrap_ui remove_definitions return separate_arguments set set_directory_properties set_property set_source_files_properties set_target_properties set_tests_properties site_name source_group string target_compile_definitions target_compile_features target_compile_options target_include_directories target_link_libraries target_sources try_compile try_run unset variable_watch
+            \ add_compile_options add_custom_command add_custom_target add_definitions add_dependencies add_executable add_library add_subdirectory add_test aux_source_directory break build_command cmake_host_system_information cmake_minimum_required cmake_parse_arguments cmake_policy configure_file configure_package_config_file continue create_test_sourcelist ctest_build ctest_configure ctest_coverage ctest_empty_binary_directory ctest_memcheck ctest_read_custom_files ctest_run_script ctest_sleep ctest_start ctest_submit ctest_test ctest_update ctest_upload define_property enable_language enable_testing endfunction endmacro execute_process export file find_file find_library find_package find_path find_program fltk_wrap_ui function get_cmake_property get_directory_property get_filename_component get_property get_source_file_property get_target_property get_test_property include include_directories include_external_msproject include_guard include_regular_expression install link_directories list load_cache load_command macro mark_as_advanced math message option project qt_wrap_cpp qt_wrap_ui remove_definitions return separate_arguments set set_directory_properties set_property set_source_files_properties set_target_properties set_tests_properties site_name source_group string target_compile_definitions target_compile_features target_compile_options target_include_directories target_link_libraries target_sources try_compile try_run unset variable_watch write_basic_package_version_file
             \ nextgroup=cmakeArguments
 
 syn keyword cmakeCommandConditional
@@ -394,6 +400,7 @@ hi def link cmakeKWcmake_minimum_required ModeMsg
 hi def link cmakeKWcmake_parse_arguments ModeMsg
 hi def link cmakeKWcmake_policy ModeMsg
 hi def link cmakeKWconfigure_file ModeMsg
+hi def link cmakeKWconfigure_package_config_file ModeMsg
 hi def link cmakeKWcreate_test_sourcelist ModeMsg
 hi def link cmakeKWctest_build ModeMsg
 hi def link cmakeKWctest_configure ModeMsg
@@ -470,6 +477,7 @@ hi def link cmakeKWuse_mangled_mesa ModeMsg
 hi def link cmakeKWvariable_requires ModeMsg
 hi def link cmakeKWvariable_watch ModeMsg
 hi def link cmakeKWwhile ModeMsg
+hi def link cmakeKWwrite_basic_package_version_file ModeMsg
 hi def link cmakeKWwrite_file ModeMsg
 
 let b:current_syntax = "cmake"
