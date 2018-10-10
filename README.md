@@ -6,7 +6,7 @@ Original code from KitWare.
 First hosted on Github by Nicholas Hutchinson.
 Extended and modified by Patrick Boettcher and contributors
 
-Keywords updated with 3.9.20170830-ge0713
+Keyword update - refer to syntax/cmake.vim-header.
 
 The code of this repository is integrated in and released with CMake and is pulled
 into the official cmake-distribution "from time to time".
