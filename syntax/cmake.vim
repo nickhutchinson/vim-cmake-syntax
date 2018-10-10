@@ -35,7 +35,7 @@ syn region cmakeVariableValue start="${" end="}" contained oneline contains=cmak
 
 syn region cmakeEnvironment start="$ENV{" end="}" contained oneline contains=cmakeTodo
 
-syn region cmakeArguments start="(" end=")" contains=ALLBUT,cmakeCommand,cmakeCommandConditional,cmakeCommandRepeat,cmakeCommandDeprecated,cmakeArguments,cmakeTodo
+syn region cmakeArguments start="(" end=")" contains=ALLBUT,cmakeCommand,cmakeCommandConditional,cmakeCommandRepeat,cmakeCommandDeprecated,cmakeCommandManuallyAdded,cmakeArguments,cmakeTodo
 
 syn case match
 
@@ -479,6 +479,30 @@ hi def link cmakeKWvariable_watch ModeMsg
 hi def link cmakeKWwhile ModeMsg
 hi def link cmakeKWwrite_basic_package_version_file ModeMsg
 hi def link cmakeKWwrite_file ModeMsg
+
+" Manually added - difficult to parse out of documentation
+syn case ignore
+
+syn keyword cmakeCommandManuallyAdded
+            \ configure_package_config_file write_basic_package_version_file
+            \ nextgroup=cmakeArguments
+
+syn case match
+
+syn keyword cmakeKWconfigure_package_config_file contained
+            \ INSTALL_DESTINATION PATH_VARS NO_SET_AND_CHECK_MACRO NO_CHECK_REQUIRED_COMPONENTS_MACRO INSTALL_PREFIX
+
+syn keyword cmakeKWconfigure_package_config_file_constants contained
+            \ AnyNewerVersion SameMajorVersion SameMinorVersion ExactVersion
+
+syn keyword cmakeKWwrite_basic_package_version_file contained
+            \ VERSION COMPATIBILITY
+
+hi def link cmakeCommandManuallyAdded Function
+
+hi def link cmakeKWconfigure_package_config_file ModeMsg
+hi def link cmakeKWwrite_basic_package_version_file ModeMsg
+hi def link cmakeKWconfigure_package_config_file_constants Constant
 
 let b:current_syntax = "cmake"
 
