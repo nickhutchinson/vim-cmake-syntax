@@ -1,13 +1,13 @@
 " Vim syntax file
 " Program:      CMake - Cross-Platform Makefile Generator
-" Version:      cmake version 3.13.20181010-ga3598
+" Version:      cmake version 3.13.20181220-g0495c
 " Language:     CMake
 " Author:       Andy Cedilnik <andy.cedilnik@kitware.com>,
 "               Nicholas Hutchinson <nshutchinson@gmail.com>,
 "               Patrick Boettcher <patrick.boettcher@posteo.de>
 " Maintainer:   Dimitri Merejkowsky <d.merej@gmail.com>
 " Former Maintainer: Karthik Krishnan <karthik.krishnan@kitware.com>
-" Last Change:  2018 Oct 18
+" Last Change:  2018 Dec 20
 "
 " Licence:      The CMake license applies to this file. See
 "               https://cmake.org/licensing
@@ -67,6 +67,7 @@ syn keyword cmakeProperty contained
             \ ATTACHED_FILES
             \ ATTACHED_FILES_ON_FAIL
             \ AUTOGEN_BUILD_DIR
+            \ AUTOGEN_ORIGIN_DEPENDS
             \ AUTOGEN_PARALLEL
             \ AUTOGEN_SOURCE_GROUP
             \ AUTOGEN_TARGETS_FOLDER
@@ -87,6 +88,7 @@ syn keyword cmakeProperty contained
             \ BINARY_DIR
             \ BUILDSYSTEM_TARGETS
             \ BUILD_RPATH
+            \ BUILD_RPATH_USE_ORIGIN
             \ BUILD_WITH_INSTALL_NAME_DIR
             \ BUILD_WITH_INSTALL_RPATH
             \ BUNDLE
@@ -412,6 +414,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_ARCHIVE_OUTPUT_DIRECTORY
             \ CMAKE_ARGC
             \ CMAKE_ARGV0
+            \ CMAKE_AUTOGEN_ORIGIN_DEPENDS
             \ CMAKE_AUTOGEN_PARALLEL
             \ CMAKE_AUTOGEN_VERBOSE
             \ CMAKE_AUTOMOC
@@ -428,6 +431,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_BACKWARDS_COMPATIBILITY
             \ CMAKE_BINARY_DIR
             \ CMAKE_BUILD_RPATH
+            \ CMAKE_BUILD_RPATH_USE_ORIGIN
             \ CMAKE_BUILD_TOOL
             \ CMAKE_BUILD_TYPE
             \ CMAKE_BUILD_WITH_INSTALL_NAME_DIR
@@ -521,6 +525,10 @@ syn keyword cmakeVariable contained
             \ CMAKE_GENERATOR_INSTANCE
             \ CMAKE_GENERATOR_PLATFORM
             \ CMAKE_GENERATOR_TOOLSET
+            \ CMAKE_GLOBAL_AUTOGEN_TARGET
+            \ CMAKE_GLOBAL_AUTOGEN_TARGET_NAME
+            \ CMAKE_GLOBAL_AUTORCC_TARGET
+            \ CMAKE_GLOBAL_AUTORCC_TARGET_NAME
             \ CMAKE_GNUtoMS
             \ CMAKE_HOME_DIRECTORY
             \ CMAKE_HOST_APPLE
@@ -870,11 +878,13 @@ syn keyword cmakeKWExternalProject contained
             \ INSTALL_DIR
             \ JOB_POOLS
             \ LIST_SEPARATOR
-            \ LOG_
             \ LOG_BUILD
             \ LOG_CONFIGURE
+            \ LOG_DIR
             \ LOG_DOWNLOAD
             \ LOG_INSTALL
+            \ LOG_MERGED_STDOUTERR
+            \ LOG_PATCH
             \ LOG_TEST
             \ LOG_UPDATE
             \ MAKE_EXE
@@ -1153,7 +1163,6 @@ syn keyword cmakeKWctest_build contained
             \ CTEST_BUILD_CONFIGURATION
             \ CTEST_BUILD_FLAGS
             \ CTEST_BUILD_TARGET
-            \ CTEST_PROJECT_NAME
             \ FLAGS
             \ NUMBER_ERRORS
             \ NUMBER_WARNINGS
@@ -1361,6 +1370,7 @@ syn keyword cmakeKWfile contained
             \ IGNORED
             \ INACTIVITY_TIMEOUT
             \ INSTALL
+            \ IS_ABSOLUTE
             \ LENGTH_MAXIMUM
             \ LENGTH_MINIMUM
             \ LF
@@ -1375,6 +1385,7 @@ syn keyword cmakeKWfile contained
             \ NETRC
             \ NETRC_FILE
             \ NEWLINE_CONSUME
+            \ NOT
             \ NO_HEX_CONVERSION
             \ NO_SOURCE_PERMISSIONS
             \ OFFSET
@@ -1384,6 +1395,7 @@ syn keyword cmakeKWfile contained
             \ PATTERN
             \ PROCESS
             \ READ
+            \ READ_SYMLINK
             \ REGEX
             \ RELATIVE_PATH
             \ RELEASE
@@ -1393,6 +1405,7 @@ syn keyword cmakeKWfile contained
             \ REQUIRED
             \ RESULT_VARIABLE
             \ SHOW_PROGRESS
+            \ SIZE
             \ SSL
             \ STATUS
             \ STRINGS
@@ -1548,24 +1561,23 @@ syn keyword cmakeKWfltk_wrap_ui contained
             \ FLTK
 
 syn keyword cmakeKWforeach contained
-            \ ARGS
             \ IN
             \ ITEMS
             \ LISTS
             \ RANGE
+            \ STATUS
 
 syn keyword cmakeKWfunction contained
             \ ARGC
             \ ARGN
-            \ ARGS
             \ ARGV
+            \ FOO
             \ PARENT_SCOPE
 
 syn keyword cmakeKWget_cmake_property contained
             \ COMPONENTS
             \ GLOBAL
             \ MACROS
-            \ VAR
             \ VARIABLES
 
 syn keyword cmakeKWget_directory_property contained
@@ -1575,9 +1587,7 @@ syn keyword cmakeKWget_directory_property contained
 
 syn keyword cmakeKWget_filename_component contained
             \ ABSOLUTE
-            \ ARG_VAR
             \ BASE_DIR
-            \ COMP
             \ DIRECTORY
             \ EXT
             \ NAME
@@ -1586,7 +1596,6 @@ syn keyword cmakeKWget_filename_component contained
             \ PROGRAM
             \ PROGRAM_ARGS
             \ REALPATH
-            \ VAR
 
 syn keyword cmakeKWget_property contained
             \ BRIEF_DOCS
@@ -1616,7 +1625,6 @@ syn keyword cmakeKWget_test_property contained
             \ VAR
 
 syn keyword cmakeKWif contained
-            \ ARGS
             \ CMAKE_MATCH_
             \ CMP
             \ COMMAND
@@ -1647,7 +1655,6 @@ syn keyword cmakeKWif contained
             \ STRLESS_EQUAL
             \ TARGET
             \ TEST
-            \ THEN
             \ TRUE
             \ VERSION_EQUAL
             \ VERSION_GREATER
@@ -1688,10 +1695,26 @@ syn keyword cmakeKWinstall contained
             \ BEFORE
             \ BUILD_TYPE
             \ BUNDLE
+            \ CMAKE_INSTALL_BINDIR
+            \ CMAKE_INSTALL_DATADIR
+            \ CMAKE_INSTALL_DATAROOTDIR
+            \ CMAKE_INSTALL_DOCDIR
+            \ CMAKE_INSTALL_INCLUDEDIR
+            \ CMAKE_INSTALL_INFODIR
+            \ CMAKE_INSTALL_LIBDIR
+            \ CMAKE_INSTALL_LOCALEDIR
+            \ CMAKE_INSTALL_LOCALSTATEDIR
+            \ CMAKE_INSTALL_MANDIR
+            \ CMAKE_INSTALL_RUNSTATEDIR
+            \ CMAKE_INSTALL_SBINDIR
+            \ CMAKE_INSTALL_SHARESTATEDIR
+            \ CMAKE_INSTALL_SYSCONFDIR
             \ CODE
             \ COMPONENT
             \ CONFIGURATIONS
             \ CVS
+            \ DATA
+            \ DATAROOT
             \ DBUILD_TYPE
             \ DCOMPONENT
             \ DESTDIR
@@ -1699,6 +1722,7 @@ syn keyword cmakeKWinstall contained
             \ DIRECTORY
             \ DIRECTORY_PERMISSIONS
             \ DLL
+            \ DOC
             \ EXCLUDE_FROM_ALL
             \ EXPORT
             \ EXPORT_ANDROID_MK
@@ -1712,10 +1736,14 @@ syn keyword cmakeKWinstall contained
             \ GROUP_WRITE
             \ IMPORTED_
             \ INCLUDES
+            \ INFO
             \ INSTALL_PREFIX
             \ INTERFACE_INCLUDE_DIRECTORIES
             \ LIBRARY
+            \ LOCALE
+            \ LOCALSTATE
             \ MACOSX_BUNDLE
+            \ MAN
             \ MESSAGE_NEVER
             \ NAMELINK_COMPONENT
             \ NAMELINK_ONLY
@@ -1738,13 +1766,18 @@ syn keyword cmakeKWinstall contained
             \ RENAME
             \ RESOURCE
             \ RPM
+            \ RUNSTATE
             \ RUNTIME
+            \ SBIN
             \ SCRIPT
             \ SETGID
             \ SETUID
+            \ SHAREDSTATE
             \ SOVERSION
+            \ SYSCONF
             \ TARGETS
             \ TRUE
+            \ TYPE
             \ USE_SOURCE_PERMISSIONS
             \ VERSION
             \ WORLD_EXECUTE
@@ -1764,7 +1797,6 @@ syn keyword cmakeKWinstall_programs contained
 syn keyword cmakeKWinstall_targets contained
             \ DLL
             \ RUNTIME_DIRECTORY
-            \ TARGETS
 
 syn keyword cmakeKWlink_directories contained
             \ AFTER
@@ -1825,22 +1857,16 @@ syn keyword cmakeKWload_command contained
 syn keyword cmakeKWmacro contained
             \ ARGC
             \ ARGN
-            \ ARGS
             \ ARGV
             \ DEFINED
+            \ FOO
             \ GREATER
             \ LISTS
             \ NOT
-            \ _BAR
-            \ _FOO
-
-syn keyword cmakeKWmake_directory contained
-            \ MAKE_DIRECTORY
 
 syn keyword cmakeKWmark_as_advanced contained
             \ CLEAR
             \ FORCE
-            \ VAR
 
 syn keyword cmakeKWmath contained
             \ EXPR
@@ -1883,18 +1909,14 @@ syn keyword cmakeKWproject contained
             \ _VERSION_TWEAK
 
 syn keyword cmakeKWremove contained
-            \ REMOVE_ITEM
             \ VALUE
             \ VAR
 
 syn keyword cmakeKWseparate_arguments contained
             \ MSDN
-            \ NATIVE
             \ NATIVE_COMMAND
             \ UNIX_COMMAND
-            \ WINDOWS
             \ WINDOWS_COMMAND
-            \ _COMMAND
 
 syn keyword cmakeKWset contained
             \ BOOL
@@ -2123,10 +2145,13 @@ syn keyword cmakeKWtry_compile contained
             \ LANG
             \ LINK_DIRECTORIES
             \ LINK_LIBRARIES
+            \ LINK_OPTIONS
             \ NOT
             \ OUTPUT_VARIABLE
+            \ PRIVATE
             \ RESULT_VAR
             \ SOURCES
+            \ STATIC_LIBRARY_OPTIONS
             \ TRUE
             \ TYPE
             \ VALUE
@@ -2147,6 +2172,7 @@ syn keyword cmakeKWtry_run contained
             \ INCLUDE_DIRECTORIES
             \ LINK_DIRECTORIES
             \ LINK_LIBRARIES
+            \ LINK_OPTIONS
             \ RUN_OUTPUT_VARIABLE
             \ RUN_RESULT_VAR
             \ TRUE
@@ -2155,7 +2181,6 @@ syn keyword cmakeKWtry_run contained
             \ __TRYRUN_OUTPUT
 
 syn keyword cmakeKWunset contained
-            \ LD_LIBRARY_PATH
             \ PARENT_SCOPE
             \ VAR
 
@@ -2171,9 +2196,6 @@ syn keyword cmakeKWvariable_requires contained
 syn keyword cmakeKWvariable_watch contained
             \ COMMAND
 
-syn keyword cmakeKWwhile contained
-            \ ARGS
-
 syn keyword cmakeKWwrite_file contained
             \ APPEND
             \ CONFIGURE_FILE
@@ -2184,6 +2206,7 @@ syn keyword cmakeKWwrite_file contained
 syn keyword cmakeGeneratorExpressions contained
             \ AND
             \ ANGLE
+            \ BAR
             \ BOOL
             \ BUILD_INTERFACE
             \ CMAKE_
@@ -2207,10 +2230,13 @@ syn keyword cmakeGeneratorExpressions contained
             \ C_STANDARD
             \ DEBUG_MODE
             \ EXPORT
+            \ FALSE
             \ FOO_EXTRA_THINGS
+            \ GENERATE
             \ GENEX_EVAL
             \ GNU
             \ IF
+            \ IGNORE
             \ INCLUDE_DIRECTORIES
             \ INSTALL_INTERFACE
             \ INSTALL_PREFIX
@@ -2224,8 +2250,10 @@ syn keyword cmakeGeneratorExpressions contained
             \ MAKE_C_IDENTIFIER
             \ MAP_IMPORTED_CONFIG_
             \ MSYS
+            \ NO
             \ NOT
             \ OBJECT_LIBRARY
+            \ OFF
             \ OLD_COMPILER
             \ PDB_NAME
             \ PDB_NAME_
@@ -2248,7 +2276,6 @@ syn keyword cmakeGeneratorExpressions contained
             \ TARGET_LINKER_FILE
             \ TARGET_LINKER_FILE_DIR
             \ TARGET_LINKER_FILE_NAME
-            \ TARGET_NAME
             \ TARGET_NAME_IF_EXISTS
             \ TARGET_OBJECTS
             \ TARGET_PDB_FILE
@@ -2493,7 +2520,6 @@ hi def link cmakeKWlist ModeMsg
 hi def link cmakeKWload_cache ModeMsg
 hi def link cmakeKWload_command ModeMsg
 hi def link cmakeKWmacro ModeMsg
-hi def link cmakeKWmake_directory ModeMsg
 hi def link cmakeKWmark_as_advanced ModeMsg
 hi def link cmakeKWmath ModeMsg
 hi def link cmakeKWmessage ModeMsg
@@ -2524,7 +2550,6 @@ hi def link cmakeKWunset ModeMsg
 hi def link cmakeKWuse_mangled_mesa ModeMsg
 hi def link cmakeKWvariable_requires ModeMsg
 hi def link cmakeKWvariable_watch ModeMsg
-hi def link cmakeKWwhile ModeMsg
 hi def link cmakeKWwrite_file ModeMsg
 
 " Manually added - difficult to parse out of documentation
