@@ -1,13 +1,13 @@
 " Vim syntax file
 " Program:      CMake - Cross-Platform Makefile Generator
-" Version:      cmake version 3.13.20181220-g0495c
+" Version:      cmake version 3.14.20190402-g56ae2
 " Language:     CMake
 " Author:       Andy Cedilnik <andy.cedilnik@kitware.com>,
 "               Nicholas Hutchinson <nshutchinson@gmail.com>,
 "               Patrick Boettcher <patrick.boettcher@posteo.de>
 " Maintainer:   Dimitri Merejkowsky <d.merej@gmail.com>
 " Former Maintainer: Karthik Krishnan <karthik.krishnan@kitware.com>
-" Last Change:  2018 Dec 20
+" Last Change:  2019 Apr 02
 "
 " Licence:      The CMake license applies to this file. See
 "               https://cmake.org/licensing
@@ -75,14 +75,17 @@ syn keyword cmakeProperty contained
             \ AUTOMOC
             \ AUTOMOC_COMPILER_PREDEFINES
             \ AUTOMOC_DEPEND_FILTERS
+            \ AUTOMOC_EXECUTABLE
             \ AUTOMOC_MACRO_NAMES
             \ AUTOMOC_MOC_OPTIONS
             \ AUTOMOC_SOURCE_GROUP
             \ AUTOMOC_TARGETS_FOLDER
             \ AUTORCC
+            \ AUTORCC_EXECUTABLE
             \ AUTORCC_OPTIONS
             \ AUTORCC_SOURCE_GROUP
             \ AUTOUIC
+            \ AUTOUIC_EXECUTABLE
             \ AUTOUIC_OPTIONS
             \ AUTOUIC_SEARCH_PATHS
             \ BINARY_DIR
@@ -98,6 +101,7 @@ syn keyword cmakeProperty contained
             \ CMAKE_CONFIGURE_DEPENDS
             \ CMAKE_CXX_KNOWN_FEATURES
             \ CMAKE_C_KNOWN_FEATURES
+            \ CMAKE_ROLE
             \ COMMON_LANGUAGE_RUNTIME
             \ COMPATIBLE_INTERFACE_BOOL
             \ COMPATIBLE_INTERFACE_NUMBER_MAX
@@ -167,6 +171,8 @@ syn keyword cmakeProperty contained
             \ GENERATED
             \ GENERATOR_FILE_NAME
             \ GENERATOR_IS_MULTI_CONFIG
+            \ GHS_INTEGRITY_APP
+            \ GHS_NO_SOURCE_GROUP_FILE
             \ GLOBAL_DEPENDS_DEBUG_MODE
             \ GLOBAL_DEPENDS_NO_CYCLES
             \ GNUtoMS
@@ -324,6 +330,7 @@ syn keyword cmakeProperty contained
             \ VS_IOT_STARTUP_TASK
             \ VS_KEYWORD
             \ VS_MOBILE_EXTENSIONS_VERSION
+            \ VS_NO_SOLUTION_DEPLOY
             \ VS_RESOURCE_GENERATOR
             \ VS_SCC_AUXPATH
             \ VS_SCC_LOCALPATH
@@ -355,11 +362,13 @@ syn keyword cmakeProperty contained
             \ XCODE_EMIT_EFFECTIVE_PLATFORM_NAME
             \ XCODE_EXPLICIT_FILE_TYPE
             \ XCODE_FILE_ATTRIBUTES
+            \ XCODE_GENERATE_SCHEME
             \ XCODE_LAST_KNOWN_FILE_TYPE
             \ XCODE_PRODUCT_TYPE
             \ XCODE_SCHEME_ADDRESS_SANITIZER
             \ XCODE_SCHEME_ADDRESS_SANITIZER_USE_AFTER_RETURN
             \ XCODE_SCHEME_ARGUMENTS
+            \ XCODE_SCHEME_DEBUG_AS_ROOT
             \ XCODE_SCHEME_DISABLE_MAIN_THREAD_CHECKER
             \ XCODE_SCHEME_DYNAMIC_LIBRARY_LOADS
             \ XCODE_SCHEME_DYNAMIC_LINKER_API_USAGE
@@ -451,10 +460,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_ASM_FLAGS_RELEASE_INIT
             \ CMAKE_ASM_FLAGS_RELWITHDEBINFO
             \ CMAKE_ASM_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_ASM_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_ASM_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_ASM_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_ASM_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_ASM_IGNORE_EXTENSIONS
             \ CMAKE_ASM_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_ASM_IMPLICIT_LINK_DIRECTORIES
@@ -505,10 +510,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_ASM_MASM_FLAGS_RELEASE_INIT
             \ CMAKE_ASM_MASM_FLAGS_RELWITHDEBINFO
             \ CMAKE_ASM_MASM_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_ASM_MASM_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_ASM_MASM_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_ASM_MASM_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_ASM_MASM_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_ASM_MASM_IGNORE_EXTENSIONS
             \ CMAKE_ASM_MASM_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_ASM_MASM_IMPLICIT_LINK_DIRECTORIES
@@ -568,10 +569,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_ASM_NASM_FLAGS_RELEASE_INIT
             \ CMAKE_ASM_NASM_FLAGS_RELWITHDEBINFO
             \ CMAKE_ASM_NASM_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_ASM_NASM_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_ASM_NASM_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_ASM_NASM_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_ASM_NASM_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_ASM_NASM_IGNORE_EXTENSIONS
             \ CMAKE_ASM_NASM_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_ASM_NASM_IMPLICIT_LINK_DIRECTORIES
@@ -683,10 +680,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_CSharp_FLAGS_RELEASE_INIT
             \ CMAKE_CSharp_FLAGS_RELWITHDEBINFO
             \ CMAKE_CSharp_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_CSharp_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_CSharp_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_CSharp_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_CSharp_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_CSharp_IGNORE_EXTENSIONS
             \ CMAKE_CSharp_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_CSharp_IMPLICIT_LINK_DIRECTORIES
@@ -748,10 +741,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_CUDA_FLAGS_RELEASE_INIT
             \ CMAKE_CUDA_FLAGS_RELWITHDEBINFO
             \ CMAKE_CUDA_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_CUDA_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_CUDA_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_CUDA_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_CUDA_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_CUDA_HOST_COMPILER
             \ CMAKE_CUDA_IGNORE_EXTENSIONS
             \ CMAKE_CUDA_IMPLICIT_INCLUDE_DIRECTORIES
@@ -823,10 +812,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_CXX_FLAGS_RELEASE_INIT
             \ CMAKE_CXX_FLAGS_RELWITHDEBINFO
             \ CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_CXX_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_CXX_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_CXX_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_CXX_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_CXX_IGNORE_EXTENSIONS
             \ CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES
@@ -889,10 +874,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_C_FLAGS_RELEASE_INIT
             \ CMAKE_C_FLAGS_RELWITHDEBINFO
             \ CMAKE_C_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_C_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_C_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_C_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_C_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_C_IGNORE_EXTENSIONS
             \ CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_C_IMPLICIT_LINK_DIRECTORIES
@@ -936,6 +917,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_EXE_LINKER_FLAGS_INIT
             \ CMAKE_EXPORT_COMPILE_COMMANDS
             \ CMAKE_EXPORT_NO_PACKAGE_REGISTRY
+            \ CMAKE_EXPORT_PACKAGE_REGISTRY
             \ CMAKE_EXTRA_GENERATOR
             \ CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES
             \ CMAKE_FIND_APPBUNDLE
@@ -947,6 +929,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_FIND_PACKAGE_NAME
             \ CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY
             \ CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY
+            \ CMAKE_FIND_PACKAGE_RESOLVE_SYMLINKS
             \ CMAKE_FIND_PACKAGE_SORT_DIRECTION
             \ CMAKE_FIND_PACKAGE_SORT_ORDER
             \ CMAKE_FIND_PACKAGE_WARN_NO_MODULE
@@ -995,10 +978,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_Fortran_FLAGS_RELWITHDEBINFO
             \ CMAKE_Fortran_FLAGS_RELWITHDEBINFO_INIT
             \ CMAKE_Fortran_FORMAT
-            \ CMAKE_Fortran_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_Fortran_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_Fortran_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_Fortran_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_Fortran_IGNORE_EXTENSIONS
             \ CMAKE_Fortran_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_Fortran_IMPLICIT_LINK_DIRECTORIES
@@ -1029,6 +1008,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_GENERATOR_INSTANCE
             \ CMAKE_GENERATOR_PLATFORM
             \ CMAKE_GENERATOR_TOOLSET
+            \ CMAKE_GHS_NO_SOURCE_GROUP_FILE
             \ CMAKE_GLOBAL_AUTOGEN_TARGET
             \ CMAKE_GLOBAL_AUTOGEN_TARGET_NAME
             \ CMAKE_GLOBAL_AUTORCC_TARGET
@@ -1102,10 +1082,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_Java_FLAGS_RELEASE_INIT
             \ CMAKE_Java_FLAGS_RELWITHDEBINFO
             \ CMAKE_Java_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_Java_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_Java_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_Java_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_Java_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_Java_IGNORE_EXTENSIONS
             \ CMAKE_Java_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_Java_IMPLICIT_LINK_DIRECTORIES
@@ -1148,6 +1124,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_MAJOR_VERSION
             \ CMAKE_MAKE_PROGRAM
             \ CMAKE_MATCH_COUNT
+            \ CMAKE_MAXIMUM_RECURSION_DEPTH
             \ CMAKE_MFC_FLAG
             \ CMAKE_MINIMUM_REQUIRED_VERSION
             \ CMAKE_MINOR_VERSION
@@ -1173,6 +1150,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_PROGRAM_PATH
             \ CMAKE_PROJECT_DESCRIPTION
             \ CMAKE_PROJECT_HOMEPAGE_URL
+            \ CMAKE_PROJECT_INCLUDE
             \ CMAKE_PROJECT_NAME
             \ CMAKE_PROJECT_VERSION
             \ CMAKE_PROJECT_VERSION_MAJOR
@@ -1217,10 +1195,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_RC_FLAGS_RELEASE_INIT
             \ CMAKE_RC_FLAGS_RELWITHDEBINFO
             \ CMAKE_RC_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_RC_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_RC_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_RC_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_RC_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_RC_IGNORE_EXTENSIONS
             \ CMAKE_RC_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_RC_IMPLICIT_LINK_DIRECTORIES
@@ -1319,10 +1293,6 @@ syn keyword cmakeVariable contained
             \ CMAKE_Swift_FLAGS_RELEASE_INIT
             \ CMAKE_Swift_FLAGS_RELWITHDEBINFO
             \ CMAKE_Swift_FLAGS_RELWITHDEBINFO_INIT
-            \ CMAKE_Swift_GHS_KERNEL_FLAGS_DEBUG
-            \ CMAKE_Swift_GHS_KERNEL_FLAGS_MINSIZEREL
-            \ CMAKE_Swift_GHS_KERNEL_FLAGS_RELEASE
-            \ CMAKE_Swift_GHS_KERNEL_FLAGS_RELWITHDEBINFO
             \ CMAKE_Swift_IGNORE_EXTENSIONS
             \ CMAKE_Swift_IMPLICIT_INCLUDE_DIRECTORIES
             \ CMAKE_Swift_IMPLICIT_LINK_DIRECTORIES
@@ -1445,7 +1415,7 @@ syn keyword cmakeVariable contained
             \ CTEST_CUSTOM_POST_TEST
             \ CTEST_CUSTOM_PRE_MEMCHECK
             \ CTEST_CUSTOM_PRE_TEST
-            \ CTEST_CUSTOM_TEST_IGNORE
+            \ CTEST_CUSTOM_TESTS_IGNORE
             \ CTEST_CUSTOM_WARNING_EXCEPTION
             \ CTEST_CUSTOM_WARNING_MATCH
             \ CTEST_CVS_CHECKOUT
@@ -1479,6 +1449,7 @@ syn keyword cmakeVariable contained
             \ CTEST_SCP_COMMAND
             \ CTEST_SITE
             \ CTEST_SOURCE_DIRECTORY
+            \ CTEST_SUBMIT_URL
             \ CTEST_SVN_COMMAND
             \ CTEST_SVN_OPTIONS
             \ CTEST_SVN_UPDATE_OPTIONS
@@ -1493,6 +1464,7 @@ syn keyword cmakeVariable contained
             \ ENV
             \ EXECUTABLE_OUTPUT_PATH
             \ GHS-MULTI
+            \ IOS
             \ LIBRARY_OUTPUT_PATH
             \ MINGW
             \ MSVC
@@ -1508,6 +1480,7 @@ syn keyword cmakeVariable contained
             \ MSVC_IDE
             \ MSVC_TOOLSET_VERSION
             \ MSVC_VERSION
+            \ MSYS
             \ PROJECT_BINARY_DIR
             \ PROJECT_DESCRIPTION
             \ PROJECT_HOMEPAGE_URL
@@ -1588,6 +1561,7 @@ syn keyword cmakeKWExternalProject contained
             \ LOG_DOWNLOAD
             \ LOG_INSTALL
             \ LOG_MERGED_STDOUTERR
+            \ LOG_OUTPUT_ON_FAILURE
             \ LOG_PATCH
             \ LOG_TEST
             \ LOG_UPDATE
@@ -1641,6 +1615,7 @@ syn keyword cmakeKWadd_compile_options contained
             \ COMPILE_OPTIONS
             \ SHELL
             \ UNIX_COMMAND
+            \ WX
 
 syn keyword cmakeKWadd_custom_command contained
             \ APPEND
@@ -1763,6 +1738,7 @@ syn keyword cmakeKWadd_test contained
             \ CONFIGURATIONS
             \ FAIL_REGULAR_EXPRESSION
             \ NAME
+            \ OFF
             \ PASS_REGULAR_EXPRESSION
             \ TARGET_FILE
             \ WILL_FAIL
@@ -1814,6 +1790,7 @@ syn keyword cmakeKWcmake_parse_arguments contained
             \ MY_INSTALL_CONFIGURATIONS
             \ MY_INSTALL_DESTINATION
             \ MY_INSTALL_FAST
+            \ MY_INSTALL_KEYWORDS_MISSING_VALUES
             \ MY_INSTALL_OPTIONAL
             \ MY_INSTALL_RENAME
             \ MY_INSTALL_TARGETS
@@ -1824,6 +1801,7 @@ syn keyword cmakeKWcmake_parse_arguments contained
             \ TARGETS
             \ TRUE
             \ UNDEFINED
+            \ _KEYWORDS_MISSING_VALUES
             \ _UNPARSED_ARGUMENTS
 
 syn keyword cmakeKWcmake_policy contained
@@ -1922,6 +1900,7 @@ syn keyword cmakeKWctest_start contained
 
 syn keyword cmakeKWctest_submit contained
             \ API
+            \ BUILD_ID
             \ CAPTURE_CMAKE_ERROR
             \ CDASH_UPLOAD
             \ CDASH_UPLOAD_TYPE
@@ -1934,6 +1913,7 @@ syn keyword cmakeKWctest_submit contained
             \ RETRY_COUNT
             \ RETRY_DELAY
             \ RETURN_VALUE
+            \ SUBMIT_URL
 
 syn keyword cmakeKWctest_test contained
             \ APPEND
@@ -1988,6 +1968,9 @@ syn keyword cmakeKWenable_language contained
             \ ASM
             \ CUDA
             \ OPTIONAL
+
+syn keyword cmakeKWenable_testing contained
+            \ BUILD_TESTING
 
 syn keyword cmakeKWexec_program contained
             \ ARGS
@@ -2051,6 +2034,8 @@ syn keyword cmakeKWfile contained
             \ CONFIGURE_DEPENDS
             \ CONTENT
             \ COPY
+            \ COPY_ON_ERROR
+            \ CREATE_LINK
             \ DESTINATION
             \ DIRECTORY_PERMISSIONS
             \ DOWNLOAD
@@ -2104,12 +2089,14 @@ syn keyword cmakeKWfile contained
             \ REMOVE_RECURSE
             \ RENAME
             \ REQUIRED
+            \ RESULT
             \ RESULT_VARIABLE
             \ SHOW_PROGRESS
             \ SIZE
             \ SSL
             \ STATUS
             \ STRINGS
+            \ SYMBOLIC
             \ TIMESTAMP
             \ TLS_CAINFO
             \ TLS_VERIFY
@@ -2291,8 +2278,10 @@ syn keyword cmakeKWget_filename_component contained
             \ BASE_DIR
             \ DIRECTORY
             \ EXT
+            \ LAST_EXT
             \ NAME
             \ NAME_WE
+            \ NAME_WLE
             \ PATH
             \ PROGRAM
             \ PROGRAM_ARGS
@@ -2428,6 +2417,7 @@ syn keyword cmakeKWinstall contained
             \ EXPORT
             \ EXPORT_ANDROID_MK
             \ EXPORT_LINK_INTERFACE_LIBRARIES
+            \ EXPORT_NAME
             \ FILES
             \ FILES_MATCHING
             \ FILE_PERMISSIONS
@@ -2462,6 +2452,7 @@ syn keyword cmakeKWinstall contained
             \ PRE_INSTALL_SCRIPT
             \ PRIVATE_HEADER
             \ PROGRAMS
+            \ PROPERTIES
             \ PUBLIC_HEADER
             \ REGEX
             \ RENAME
@@ -2475,6 +2466,7 @@ syn keyword cmakeKWinstall contained
             \ SETUID
             \ SHAREDSTATE
             \ SOVERSION
+            \ STATIC
             \ SYSCONF
             \ TARGETS
             \ TRUE
@@ -2529,6 +2521,8 @@ syn keyword cmakeKWlist contained
             \ ORDER
             \ OUTPUT_VARIABLE
             \ PARENT_SCOPE
+            \ POP_BACK
+            \ POP_FRONT
             \ PREPEND
             \ REGEX
             \ REMOVE_AT
@@ -2609,6 +2603,12 @@ syn keyword cmakeKWproject contained
             \ _VERSION_PATCH
             \ _VERSION_TWEAK
 
+syn keyword cmakeKWqt_wrap_cpp contained
+            \ AUTOMOC
+
+syn keyword cmakeKWqt_wrap_ui contained
+            \ AUTOUIC
+
 syn keyword cmakeKWremove contained
             \ VALUE
             \ VAR
@@ -2631,6 +2631,7 @@ syn keyword cmakeKWset contained
             \ STRINGS
 
 syn keyword cmakeKWset_directory_properties contained
+            \ DIRECTORY
             \ PROPERTIES
 
 syn keyword cmakeKWset_property contained
@@ -2648,6 +2649,7 @@ syn keyword cmakeKWset_property contained
 
 syn keyword cmakeKWset_source_files_properties contained
             \ PROPERTIES
+            \ SOURCE
 
 syn keyword cmakeKWset_target_properties contained
             \ PROPERTIES
@@ -2655,6 +2657,7 @@ syn keyword cmakeKWset_target_properties contained
 
 syn keyword cmakeKWset_tests_properties contained
             \ PROPERTIES
+            \ TEST
 
 syn keyword cmakeKWsource_group contained
             \ FILES
@@ -2841,17 +2844,20 @@ syn keyword cmakeKWtry_compile contained
             \ DEFINED
             \ DLINK_LIBRARIES
             \ DVAR
+            \ EXECUTABLE
             \ FALSE
+            \ GHS
             \ INCLUDE_DIRECTORIES
             \ LANG
             \ LINK_DIRECTORIES
             \ LINK_LIBRARIES
             \ LINK_OPTIONS
+            \ MULTI
             \ NOT
             \ OUTPUT_VARIABLE
             \ PRIVATE
-            \ RESULT_VAR
             \ SOURCES
+            \ STATIC_LIBRARY
             \ STATIC_LIBRARY_OPTIONS
             \ TRUE
             \ TYPE
@@ -2865,7 +2871,6 @@ syn keyword cmakeKWtry_run contained
             \ CMAKE_FLAGS
             \ COMPILE_DEFINITIONS
             \ COMPILE_OUTPUT_VARIABLE
-            \ COMPILE_RESULT_VAR
             \ DLINK_LIBRARIES
             \ DVAR
             \ FAILED_TO_RUN
@@ -2875,7 +2880,6 @@ syn keyword cmakeKWtry_run contained
             \ LINK_LIBRARIES
             \ LINK_OPTIONS
             \ RUN_OUTPUT_VARIABLE
-            \ RUN_RESULT_VAR
             \ TRUE
             \ TYPE
             \ VALUE
@@ -2920,7 +2924,8 @@ syn keyword cmakeGeneratorExpressions contained
             \ COMPILING_CXX
             \ CONFIG
             \ CONFIGURATION
-            \ CUDA
+            \ CUDA_COMPILER_ID
+            \ CUDA_COMPILER_VERSION
             \ CUSTOM_KEYS
             \ CXX_COMPILER_ID
             \ CXX_COMPILER_VERSION
@@ -2949,7 +2954,6 @@ syn keyword cmakeGeneratorExpressions contained
             \ LOWER_CASE
             \ MAKE_C_IDENTIFIER
             \ MAP_IMPORTED_CONFIG_
-            \ MSYS
             \ NO
             \ NOT
             \ OBJECT_LIBRARY
@@ -2960,6 +2964,7 @@ syn keyword cmakeGeneratorExpressions contained
             \ PDB_OUTPUT_DIRECTORY
             \ PDB_OUTPUT_DIRECTORY_
             \ PLATFORM_ID
+            \ POSIX
             \ PRIVATE
             \ PUBLIC
             \ SDK
@@ -3185,6 +3190,7 @@ hi def link cmakeKWctest_update ModeMsg
 hi def link cmakeKWctest_upload ModeMsg
 hi def link cmakeKWdefine_property ModeMsg
 hi def link cmakeKWenable_language ModeMsg
+hi def link cmakeKWenable_testing ModeMsg
 hi def link cmakeKWexec_program ModeMsg
 hi def link cmakeKWexecute_process ModeMsg
 hi def link cmakeKWexport ModeMsg
@@ -3224,6 +3230,8 @@ hi def link cmakeKWmath ModeMsg
 hi def link cmakeKWmessage ModeMsg
 hi def link cmakeKWoption ModeMsg
 hi def link cmakeKWproject ModeMsg
+hi def link cmakeKWqt_wrap_cpp ModeMsg
+hi def link cmakeKWqt_wrap_ui ModeMsg
 hi def link cmakeKWremove ModeMsg
 hi def link cmakeKWseparate_arguments ModeMsg
 hi def link cmakeKWset ModeMsg
