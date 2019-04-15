@@ -7,7 +7,7 @@
 "               Patrick Boettcher <patrick.boettcher@posteo.de>
 " Maintainer:   Dimitri Merejkowsky <d.merej@gmail.com>
 " Former Maintainer: Karthik Krishnan <karthik.krishnan@kitware.com>
-" Last Change:  2019 Apr 02
+" Last Change:  2019 Apr 15
 "
 " Licence:      The CMake license applies to this file. See
 "               https://cmake.org/licensing
@@ -31,7 +31,7 @@ syn region cmakeGeneratorExpression start="$<" end=">" contained oneline contain
 
 syn region cmakeString start='"' end='"' contained contains=cmakeTodo,cmakeVariableValue,cmakeEscaped
 
-syn region cmakeVariableValue start="${" end="}" contained oneline contains=cmakeVariable,cmakeTodo
+syn region cmakeVariableValue start="${" end="}" contained oneline contains=cmakeVariable,cmakeTodo,cmakeVariableValue
 
 syn region cmakeEnvironment start="$ENV{" end="}" contained oneline contains=cmakeTodo
 
