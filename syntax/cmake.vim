@@ -1,13 +1,13 @@
 " Vim syntax file
 " Program:      CMake - Cross-Platform Makefile Generator
-" Version:      cmake version 3.14.20190402-g56ae2
+" Version:      cmake version 3.14.20190529-g067a4f
 " Language:     CMake
 " Author:       Andy Cedilnik <andy.cedilnik@kitware.com>,
 "               Nicholas Hutchinson <nshutchinson@gmail.com>,
 "               Patrick Boettcher <patrick.boettcher@posteo.de>
 " Maintainer:   Dimitri Merejkowsky <d.merej@gmail.com>
 " Former Maintainer: Karthik Krishnan <karthik.krishnan@kitware.com>
-" Last Change:  2019 Apr 15
+" Last Change:  2019 May 29
 "
 " Licence:      The CMake license applies to this file. See
 "               https://cmake.org/licensing
@@ -41,6 +41,7 @@ syn case match
 
 syn keyword cmakeProperty contained
             \ ABSTRACT
+            \ ADDITIONAL_CLEAN_FILES
             \ ADDITIONAL_MAKE_CLEAN_FILES
             \ ADVANCED
             \ ALIASED_TARGET
@@ -247,6 +248,7 @@ syn keyword cmakeProperty contained
             \ MANUALLY_ADDED_DEPENDENCIES
             \ MEASUREMENT
             \ MODIFIED
+            \ MSVC_RUNTIME_LIBRARY
             \ NAME
             \ NO_SONAME
             \ NO_SYSTEM_FROM_IMPORTED
@@ -296,6 +298,10 @@ syn keyword cmakeProperty contained
             \ SUBDIRECTORIES
             \ SUFFIX
             \ SYMBOLIC
+            \ Swift_DEPENDENCIES_FILE
+            \ Swift_DIAGNOSTICS_FILE
+            \ Swift_MODULE_DIRECTORY
+            \ Swift_MODULE_NAME
             \ TARGET_ARCHIVES_MAY_BE_SHARED_LIBS
             \ TARGET_MESSAGES
             \ TARGET_SUPPORTS_SHARED_LIBS
@@ -328,9 +334,11 @@ syn keyword cmakeProperty contained
             \ VS_INCLUDE_IN_VSIX
             \ VS_IOT_EXTENSIONS_VERSION
             \ VS_IOT_STARTUP_TASK
+            \ VS_JUST_MY_CODE_DEBUGGING
             \ VS_KEYWORD
             \ VS_MOBILE_EXTENSIONS_VERSION
             \ VS_NO_SOLUTION_DEPLOY
+            \ VS_PROJECT_IMPORT
             \ VS_RESOURCE_GENERATOR
             \ VS_SCC_AUXPATH
             \ VS_SCC_LOCALPATH
@@ -913,6 +921,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_ERROR_DEPRECATED
             \ CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION
             \ CMAKE_EXECUTABLE_SUFFIX
+            \ CMAKE_EXECUTE_PROCESS_COMMAND_ECHO
             \ CMAKE_EXE_LINKER_FLAGS
             \ CMAKE_EXE_LINKER_FLAGS_INIT
             \ CMAKE_EXPORT_COMPILE_COMMANDS
@@ -929,6 +938,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_FIND_PACKAGE_NAME
             \ CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY
             \ CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY
+            \ CMAKE_FIND_PACKAGE_PREFER_CONFIG
             \ CMAKE_FIND_PACKAGE_RESOLVE_SYMLINKS
             \ CMAKE_FIND_PACKAGE_SORT_DIRECTION
             \ CMAKE_FIND_PACKAGE_SORT_ORDER
@@ -939,6 +949,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_FIND_ROOT_PATH_MODE_PACKAGE
             \ CMAKE_FIND_ROOT_PATH_MODE_PROGRAM
             \ CMAKE_FOLDER
+            \ CMAKE_FRAMEWORK
             \ CMAKE_FRAMEWORK_PATH
             \ CMAKE_Fortran
             \ CMAKE_Fortran_ANDROID_TOOLCHAIN_MACHINE
@@ -1132,6 +1143,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_MODULE_LINKER_FLAGS_INIT
             \ CMAKE_MODULE_PATH
             \ CMAKE_MSVCIDE_RUN_PATH
+            \ CMAKE_MSVC_RUNTIME_LIBRARY
             \ CMAKE_NETRC
             \ CMAKE_NETRC_FILE
             \ CMAKE_NINJA_OUTPUT_PATH_PREFIX
@@ -1151,6 +1163,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_PROJECT_DESCRIPTION
             \ CMAKE_PROJECT_HOMEPAGE_URL
             \ CMAKE_PROJECT_INCLUDE
+            \ CMAKE_PROJECT_INCLUDE_BEFORE
             \ CMAKE_PROJECT_NAME
             \ CMAKE_PROJECT_VERSION
             \ CMAKE_PROJECT_VERSION_MAJOR
@@ -1307,6 +1320,7 @@ syn keyword cmakeVariable contained
             \ CMAKE_Swift_LINKER_WRAPPER_FLAG
             \ CMAKE_Swift_LINKER_WRAPPER_FLAG_SEP
             \ CMAKE_Swift_LINK_EXECUTABLE
+            \ CMAKE_Swift_MODULE_DIRECTORY
             \ CMAKE_Swift_OUTPUT_EXTENSION
             \ CMAKE_Swift_PLATFORM_ID
             \ CMAKE_Swift_SIMULATE_ID
@@ -1342,9 +1356,11 @@ syn keyword cmakeVariable contained
             \ CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD
             \ CMAKE_VS_INCLUDE_PACKAGE_TO_DEFAULT_BUILD
             \ CMAKE_VS_INTEL_Fortran_PROJECT_VERSION
+            \ CMAKE_VS_JUST_MY_CODE_DEBUGGING
             \ CMAKE_VS_MSBUILD_COMMAND
             \ CMAKE_VS_NsightTegra_VERSION
             \ CMAKE_VS_PLATFORM_NAME
+            \ CMAKE_VS_PLATFORM_NAME_DEFAULT
             \ CMAKE_VS_PLATFORM_TOOLSET
             \ CMAKE_VS_PLATFORM_TOOLSET_CUDA
             \ CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE
@@ -1459,6 +1475,7 @@ syn keyword cmakeVariable contained
             \ CTEST_UPDATE_COMMAND
             \ CTEST_UPDATE_OPTIONS
             \ CTEST_UPDATE_VERSION_ONLY
+            \ CTEST_UPDATE_VERSION_OVERRIDE
             \ CTEST_USE_LAUNCHERS
             \ CYGWIN
             \ ENV
@@ -1537,6 +1554,7 @@ syn keyword cmakeKWExternalProject contained
             \ EP_UPDATE_DISCONNECTED
             \ EXCLUDE_FROM_ALL
             \ FORCE
+            \ GHS
             \ GIT_CONFIG
             \ GIT_PROGRESS
             \ GIT_REMOTE_NAME
@@ -1566,6 +1584,7 @@ syn keyword cmakeKWExternalProject contained
             \ LOG_TEST
             \ LOG_UPDATE
             \ MAKE_EXE
+            \ MULTI
             \ NAMES
             \ NETRC
             \ NETRC_FILE
@@ -1631,6 +1650,8 @@ syn keyword cmakeKWadd_custom_command contained
             \ GENERATED
             \ IMPLICIT_DEPENDS
             \ INCLUDE_DIRECTORIES
+            \ JOB_POOL
+            \ JOB_POOLS
             \ JOIN
             \ MAIN_DEPENDENCY
             \ NOT
@@ -1656,6 +1677,8 @@ syn keyword cmakeKWadd_custom_target contained
             \ DEPENDS
             \ GENERATED
             \ INCLUDE_DIRECTORIES
+            \ JOB_POOL
+            \ JOB_POOLS
             \ JOIN
             \ SOURCES
             \ TARGET_PROPERTY
@@ -1711,6 +1734,7 @@ syn keyword cmakeKWadd_library contained
             \ POST_BUILD
             \ PRE_BUILD
             \ PRE_LINK
+            \ PUBLIC_HEADER
             \ RUNTIME_OUTPUT_DIRECTORY
             \ SHARED
             \ STATIC
@@ -1725,6 +1749,7 @@ syn keyword cmakeKWadd_link_options contained
             \ LINKER
             \ LINK_OPTIONS
             \ SHELL
+            \ STATIC_LIBRARY_OPTIONS
             \ UNIX_COMMAND
             \ _LINKER_WRAPPER_FLAG
             \ _LINKER_WRAPPER_FLAG_SEP
@@ -1981,6 +2006,7 @@ syn keyword cmakeKWexecute_process contained
             \ ANSI
             \ AUTO
             \ COMMAND
+            \ COMMAND_ECHO
             \ ENCODING
             \ ERROR_FILE
             \ ERROR_QUIET
@@ -1996,6 +2022,8 @@ syn keyword cmakeKWexecute_process contained
             \ RESULTS_VARIABLE
             \ RESULT_VARIABLE
             \ RFC
+            \ STDERR
+            \ STDOUT
             \ TIMEOUT
             \ UTF
             \ VERBATIM
@@ -2045,6 +2073,7 @@ syn keyword cmakeKWfile contained
             \ FILES_MATCHING
             \ FILE_PERMISSIONS
             \ FOLLOW_SYMLINKS
+            \ FOLLOW_SYMLINK_CHAIN
             \ FUNCTION
             \ GENERATE
             \ GLOB
@@ -2153,6 +2182,7 @@ syn keyword cmakeKWfind_library contained
 
 syn keyword cmakeKWfind_package contained
             \ ABI
+            \ BUNDLE
             \ CMAKE_DISABLE_FIND_PACKAGE_
             \ CMAKE_FIND_ROOT_PATH_BOTH
             \ COMPONENTS
@@ -2161,6 +2191,7 @@ syn keyword cmakeKWfind_package contained
             \ DEC
             \ DVAR
             \ EXACT
+            \ FRAMEWORK
             \ HINTS
             \ MODULE
             \ NAMES
@@ -2570,11 +2601,15 @@ syn keyword cmakeKWmath contained
 
 syn keyword cmakeKWmessage contained
             \ AUTHOR_WARNING
+            \ DEBUG
             \ DEPRECATION
             \ FATAL_ERROR
             \ GUI
+            \ NOTICE
             \ SEND_ERROR
             \ STATUS
+            \ TRACE
+            \ VERBOSE
             \ WARNING
 
 syn keyword cmakeKWoption contained
@@ -2696,6 +2731,7 @@ syn keyword cmakeKWstring contained
             \ RANDOM
             \ RANDOM_SEED
             \ REGEX
+            \ REPEAT
             \ REPLACE
             \ REVERSE
             \ RFC
@@ -2792,7 +2828,6 @@ syn keyword cmakeKWtarget_link_libraries contained
             \ LINK_PUBLIC
             \ OBJECT
             \ OLD
-            \ OSX
             \ PRIVATE
             \ PUBLIC
             \ SHARED
@@ -2813,6 +2848,7 @@ syn keyword cmakeKWtarget_link_options contained
             \ PRIVATE
             \ PUBLIC
             \ SHELL
+            \ STATIC_LIBRARY_OPTIONS
             \ UNIX_COMMAND
             \ _LINKER_WRAPPER_FLAG
             \ _LINKER_WRAPPER_FLAG_SEP
@@ -2911,6 +2947,8 @@ syn keyword cmakeKWwrite_file contained
 syn keyword cmakeGeneratorExpressions contained
             \ AND
             \ ANGLE
+            \ ARCHIVE_OUTPUT_NAME
+            \ ARCHIVE_OUTPUT_NAME_
             \ BAR
             \ BOOL
             \ BUILD_INTERFACE
@@ -2920,8 +2958,11 @@ syn keyword cmakeGeneratorExpressions contained
             \ COMPILE_DEFINITIONS
             \ COMPILE_FEATURES
             \ COMPILE_LANGUAGE
+            \ COMPILE_LANG_AND_ID
             \ COMPILING_CUDA
-            \ COMPILING_CXX
+            \ COMPILING_CXX_WITH_CLANG
+            \ COMPILING_CXX_WITH_INTEL
+            \ COMPILING_C_WITH_CLANG
             \ CONFIG
             \ CONFIGURATION
             \ CUDA_COMPILER_ID
@@ -2934,14 +2975,19 @@ syn keyword cmakeGeneratorExpressions contained
             \ C_COMPILER_VERSION
             \ C_STANDARD
             \ DEBUG_MODE
+            \ DEBUG_POSTFIX
+            \ EXCLUDE
             \ EXPORT
             \ FALSE
+            \ FILTER
             \ FOO_EXTRA_THINGS
             \ GENERATE
             \ GENEX_EVAL
             \ GNU
             \ IF
             \ IGNORE
+            \ IMPORT_PREFIX
+            \ IMPORT_SUFFIX
             \ INCLUDE_DIRECTORIES
             \ INSTALL_INTERFACE
             \ INSTALL_PREFIX
@@ -2949,6 +2995,9 @@ syn keyword cmakeGeneratorExpressions contained
             \ IN_LIST
             \ JOIN
             \ LANG
+            \ LANG_COMPILER_ID
+            \ LIBRARY_OUTPUT_NAME
+            \ LIBRARY_OUTPUT_NAME_
             \ LINK_LIBRARIES
             \ LINK_ONLY
             \ LOWER_CASE
@@ -2956,9 +3005,10 @@ syn keyword cmakeGeneratorExpressions contained
             \ MAP_IMPORTED_CONFIG_
             \ NO
             \ NOT
-            \ OBJECT_LIBRARY
             \ OFF
             \ OLD_COMPILER
+            \ OUTPUT_NAME
+            \ OUTPUT_NAME_
             \ PDB_NAME
             \ PDB_NAME_
             \ PDB_OUTPUT_DIRECTORY
@@ -2967,6 +3017,9 @@ syn keyword cmakeGeneratorExpressions contained
             \ POSIX
             \ PRIVATE
             \ PUBLIC
+            \ REMOVE_DUPLICATES
+            \ RUNTIME_OUTPUT_NAME
+            \ RUNTIME_OUTPUT_NAME_
             \ SDK
             \ SEMICOLON
             \ SHELL_PATH
@@ -2975,15 +3028,22 @@ syn keyword cmakeGeneratorExpressions contained
             \ TARGET_BUNDLE_DIR
             \ TARGET_EXISTS
             \ TARGET_FILE
+            \ TARGET_FILE_BASE_NAME
             \ TARGET_FILE_DIR
             \ TARGET_FILE_NAME
+            \ TARGET_FILE_PREFIX
+            \ TARGET_FILE_SUFFIX
             \ TARGET_GENEX_EVAL
             \ TARGET_LINKER_FILE
+            \ TARGET_LINKER_FILE_BASE_NAME
             \ TARGET_LINKER_FILE_DIR
             \ TARGET_LINKER_FILE_NAME
+            \ TARGET_LINKER_FILE_PREFIX
+            \ TARGET_LINKER_FILE_SUFFIX
             \ TARGET_NAME_IF_EXISTS
             \ TARGET_OBJECTS
             \ TARGET_PDB_FILE
+            \ TARGET_PDB_FILE_BASE_NAME
             \ TARGET_PDB_FILE_DIR
             \ TARGET_PDB_FILE_NAME
             \ TARGET_POLICY
@@ -2997,6 +3057,7 @@ syn keyword cmakeGeneratorExpressions contained
             \ VERSION_GREATER_EQUAL
             \ VERSION_LESS
             \ VERSION_LESS_EQUAL
+            \ _POSTFIX
 
 syn case ignore
 
