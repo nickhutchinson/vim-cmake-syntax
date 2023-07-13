@@ -2481,7 +2481,6 @@ syn keyword cmakeKWadd_link_options contained
             \ CUDA_SEPARABLE_COMPILATION
             \ DEVICE_LINK
             \ GCC
-            \ GNU
             \ HOST_LINK
             \ LANG
             \ LINKER
@@ -4076,7 +4075,6 @@ syn keyword cmakeKWtarget_link_options contained
             \ CUDA_SEPARABLE_COMPILATION
             \ DEVICE_LINK
             \ GCC
-            \ GNU
             \ HOST_LINK
             \ IMPORTED
             \ INTERFACE
@@ -4334,7 +4332,6 @@ syn keyword cmakeGeneratorExpressions contained
             \ GET_ROOT_NAME
             \ GET_ROOT_PATH
             \ GET_STEM
-            \ GNU
             \ HAS_
             \ HAS_EXTENSION
             \ HAS_FILENAME

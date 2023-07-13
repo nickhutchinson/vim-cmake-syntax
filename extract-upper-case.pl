@@ -19,7 +19,7 @@ my %keywords; # command => keyword-list
 my @languages = qw(ASM ASM_MASM ASM_NASM C CSharp CUDA CXX Fortran Java RC Swift);
 
 # unwanted upper-cases
-my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_ DFOO DBAR NEW);
+my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_ DFOO DBAR NEW GNU);
 	# cannot remove ALL - exists for add_custom_command
 
 # control-statements
