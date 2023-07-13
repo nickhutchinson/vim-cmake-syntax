@@ -16,7 +16,7 @@ my @modules;
 my %keywords; # command => keyword-list
 
 # find cmake/Modules/ | sed -rn 's/.*CMakeDetermine(.+)Compiler.cmake/\1/p' | sort
-my @languages = qw(ASM ASM_MASM ASM_NASM C CSharp CUDA CXX Fortran Java RC Swift);
+my @languages = qw(ASM ASM_MASM ASM_NASM C CSharp CUDA CXX Fortran Java RC Swift HIP);
 
 # unwanted upper-cases
 my %unwanted = map { $_ => 1 } qw(VS CXX IDE NOTFOUND NO_ DFOO DBAR NEW GNU);
