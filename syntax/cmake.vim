@@ -35,7 +35,7 @@ syn region cmakeVariableValue start="${" end="}" contained oneline contains=cmak
 
 syn region cmakeEnvironment start="$ENV{" end="}" contained oneline contains=cmakeTodo
 
-syn region cmakeArguments start="(" end=")" contains=ALLBUT,@Spell,cmakeGeneratorExpressions,cmakeCommand,cmakeCommandConditional,cmakeCommandRepeat,cmakeCommandDeprecated,cmakeCommandManuallyAdded,cmakeArguments,cmakeTodo
+syn region cmakeArguments start="(" end=")" contains=ALLBUT,cmakeGeneratorExpressions,cmakeCommand,cmakeCommandConditional,cmakeCommandRepeat,cmakeCommandDeprecated,cmakeCommandManuallyAdded,cmakeArguments,cmakeTodo,@Spell
 
 syn case match
 
@@ -2153,6 +2153,7 @@ syn keyword cmakeVariable contained
 
 syn keyword cmakeModule contained
             \ ExternalProject
+            \ FetchContent
 
 syn keyword cmakeKWExternalProject contained
             \ AWS
@@ -2271,6 +2272,66 @@ syn keyword cmakeKWExternalProject contained
             \ USES_TERMINAL_TEST
             \ USES_TERMINAL_UPDATE
             \ WORKING_DIRECTORY
+
+syn keyword cmakeKWFetchContent contained
+            \ ALWAYS
+            \ BINARY_DIR
+            \ BUILD_COMMAND
+            \ BYPASS_PROVIDER
+            \ CMAKE_PROJECT_
+            \ CONFIGURE_COMMAND
+            \ COPY
+            \ CORRECT
+            \ DCMAKE_TOOLCHAIN_FILE
+            \ DESTINATION
+            \ DOWNLOAD_NO_EXTRACT
+            \ EXISTS
+            \ FETCHCONTENT_BASE_DIR
+            \ FETCHCONTENT_FULLY_DISCONNECTED
+            \ FETCHCONTENT_MAKEAVAILABLE_SERIAL
+            \ FETCHCONTENT_QUIET
+            \ FETCHCONTENT_SOURCE_DIR_
+            \ FETCHCONTENT_TRY_FIND_PACKAGE_MODE
+            \ FETCHCONTENT_UPDATES_DISCONNECTED
+            \ FETCHCONTENT_UPDATES_DISCONNECTED_
+            \ FIND_PACKAGE_ARGS
+            \ GIT_REPOSITORY
+            \ GIT_TAG
+            \ GLOBAL
+            \ GTEST_BOTH_LIBRARIES
+            \ GTEST_LIBRARIES
+            \ GTEST_MAIN_LIBRARIES
+            \ INSTALL_COMMAND
+            \ INTERNAL
+            \ NAME
+            \ NAMES
+            \ NEVER
+            \ NOTE
+            \ OFF
+            \ OPTIONAL
+            \ OPT_IN
+            \ OVERRIDE_FIND_PACKAGE
+            \ PACKAGE_VERSION_COMPATIBLE
+            \ PACKAGE_VERSION_EXACT
+            \ QUIET
+            \ SOURCE_SUBDIR
+            \ STREQUAL
+            \ SUBBUILD_DIR
+            \ SVN_REPOSITORY
+            \ SVN_REVISION
+            \ SYSTEM
+            \ TARGET
+            \ TEST_COMMAND
+            \ TRUE
+            \ URL
+            \ URL_HASH
+            \ VERIFY_INTERFACE_HEADER_SETS
+            \ WRITE
+            \ WRONG
+            \ _BINARY_DIR
+            \ _INCLUDE
+            \ _POPULATED
+            \ _SOURCE_DIR
 
 syn keyword cmakeKWadd_compile_definitions contained
             \ COMPILE_DEFINITIONS
@@ -4580,6 +4641,7 @@ hi def link cmakeVariableValue Type
 hi def link cmakeVariable Identifier
 
 hi def link cmakeKWExternalProject ModeMsg
+hi def link cmakeKWFetchContent ModeMsg
 hi def link cmakeKWadd_compile_definitions ModeMsg
 hi def link cmakeKWadd_compile_options ModeMsg
 hi def link cmakeKWadd_custom_command ModeMsg

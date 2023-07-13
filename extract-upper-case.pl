@@ -30,7 +30,7 @@ my %loop = map { $_ => 1 } qw(foreach while endforeach endwhile);
 my %deprecated = map { $_ => 1 } qw(build_name exec_program export_library_dependencies install_files install_programs install_targets link_libraries make_directory output_required_files remove subdir_depends subdirs use_mangled_mesa utility_source variable_requires write_file);
 
 # add some (popular) modules
-push @modules, "ExternalProject";
+push @modules, "ExternalProject", "FetchContent";
 
 # variables
 open(CMAKE, "$cmake --help-variable-list|") or die "could not run cmake";
